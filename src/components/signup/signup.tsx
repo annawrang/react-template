@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
 interface Iprops {
     modalShow: boolean;
@@ -14,6 +15,18 @@ class Signup extends React.Component<Iprops, Istate> {
         super(props);
     }
 
+signupMethod = () => {
+        console.log('clicked signup');
+        axios.get('http://localhost:8080/signup')
+        .then(res => {
+            console.log(res)
+            console.log('LOGGED IN ------ <3')
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
     render() {
         return <div>
 
@@ -24,7 +37,7 @@ class Signup extends React.Component<Iprops, Istate> {
                         <Modal.Title>Sign up</Modal.Title>
                     </Modal.Header>
 
-                                   <Modal.Body>
+                    <Modal.Body>
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
@@ -45,7 +58,7 @@ class Signup extends React.Component<Iprops, Istate> {
                             <Form.Group controlId="formBasicChecbox">
                                 <Form.Check type="checkbox" label="Check me out" />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" onClick={() => this.signupMethod()}>
                                 Submit
   </Button>
                         </Form>

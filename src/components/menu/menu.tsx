@@ -41,15 +41,15 @@ class Menu extends React.Component<Iprops, Istate> {
 
     render() {
         return <div>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light" expand="sm">
                 <Navbar.Brand>
                     <Link to="/home">LOGO</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse>
                     <Nav>
-                        <Nav.Link as={Link} to="/home">home</Nav.Link>
-                        <Nav.Link as={Link} to="/about">about</Nav.Link>
+                        <Nav.Link href="/home">home</Nav.Link>
+                        <Nav.Link href="/about">about</Nav.Link>
                     </Nav>
                     <Nav className="ml-auto">
                         <Button variant="outline-success" onClick={() => { this.setState({ signupOpen: true }) }}>Sign up</Button>
