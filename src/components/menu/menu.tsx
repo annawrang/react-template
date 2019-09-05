@@ -1,10 +1,6 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
-import NavItem from 'react-bootstrap/NavItem';
-import NavLink from 'react-bootstrap/NavLink';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Login from '../login/login';
@@ -19,19 +15,13 @@ interface Istate {
 interface Iprops { }
 
 class Menu extends React.Component<Iprops, Istate> {
+
     constructor(props: Iprops) {
         super(props);
         this.state = {
             loginOpen: false,
             signupOpen: false
         };
-    }
-
-    closeLoginModal = () => {
-        console.log('clicked close login');
-        this.setState({
-            loginOpen: false
-        })
     }
 
     closeSignupModal = () => {
@@ -41,31 +31,30 @@ class Menu extends React.Component<Iprops, Istate> {
         })
     }
 
+
+    closeLoginModal = () => {
+        console.log('clicked close login');
+        this.setState({
+            loginOpen: false
+        })
+    }
+
     render() {
         return <div>
-            <Navbar bg="light" expand="lg" fixed="top">
+            <Navbar bg="light" expand="lg">
                 <Navbar.Brand>
-                    <Link to="/home">Some name... </Link>
+                    <Link to="/home">LOGO</Link>
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
-                        <LinkContainer to="/home">
-                            <Nav.Link>
-                                Home
-                            </Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/about">
-                            <Nav.Link>
-                                About
-                            </Nav.Link>
-                        </LinkContainer>
+                <Navbar.Toggle />
+                <Navbar.Collapse>
+                    <Nav>
+                        <Nav.Link as={Link} to="/home">home</Nav.Link>
+                        <Nav.Link as={Link} to="/about">about</Nav.Link>
                     </Nav>
-                    <Form inline>
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    </Form>
-                    <Button variant="outline-success" onClick={() => { this.setState({ signupOpen: true }) }}>Sign up</Button>
-                    <Button variant="outline-success" onClick={() => { this.setState({ loginOpen: true }) }}>Login</Button>
+                    <Nav className="ml-auto">
+                        <Button variant="outline-success" onClick={() => { this.setState({ signupOpen: true }) }}>Sign up</Button>
+                        <Button variant="outline-success" onClick={() => { this.setState({ loginOpen: true }) }}>Login</Button>
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
             <Signup modalShow={this.state.signupOpen} closeSignupModal={() => this.closeSignupModal()} />
